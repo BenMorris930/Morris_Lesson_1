@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public GameObject Car;
     public float Speed;
     public float CameraSense;
+    private float holdtime = 0;
+    private float deceleration;
 
 
     // Start is called before the first frame update
@@ -19,7 +21,13 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (Input.GetKey("w"))
-            Car.transform.Translate(0, 0, 0.1f * Speed);
+        {
+            if (holdtime < deceleration)
+                holdtime = deceleration;
+            Car.transform.Translate(0, 0, 0.1f * holdtime);
+            if (holdtime < Speed)
+                holdtime += 0.05f;
+        }
         if (Input.GetKey("s"))
             Car.transform.Translate(0, 0, -0.025f * Speed);
         if (Input.GetKey("a") && !Input.GetKey("w") && !Input.GetKey("s"))
@@ -42,7 +50,35 @@ public class Player : MonoBehaviour
             Car.transform.Rotate(0, 1 * CameraSense, 0, Space.Self);
         if (Input.GetKey("a") && Input.GetKey("w"))
             Car.transform.Rotate(0, -1 * CameraSense, 0, Space.Self);
-        
+
+        if (Input.GetKeyUp("w"))
+        {
+            deceleration = holdtime;
+            holdtime = 0;
+        }
+
+        if (Input.GetKeyUp("w") && Input.GetKey("a"))
+        {
+            deceleration = holdtime;
+            holdtime = 0;
+        }
+
+        if (Input.GetKeyUp("w") && Input.GetKey("d"))
+        {
+            deceleration = holdtime;
+            holdtime = 0;
+        }
+
+        if (!Input.GetKeyUp("w"))
+        {
+            Car.transform.Translate(0, 0, 0.1f * deceleration);
+            if (deceleration < 0.1)
+                deceleration = 0;
+            if (deceleration > 0)
+                deceleration -= 0.05f;
+
+        }
+            
 
     }
 }
