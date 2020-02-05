@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
     public float CameraSense;
     private float holdtime = 0;
     private float deceleration;
-
+    private float acaccel = 0;
+    private float dcaccel = 0;
+    public float RSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -22,63 +24,27 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey("w"))
         {
-            if (holdtime < deceleration)
-                holdtime = deceleration;
             Car.transform.Translate(0, 0, 0.1f * holdtime);
             if (holdtime < Speed)
                 holdtime += 0.05f;
         }
+
         if (Input.GetKey("s"))
-            Car.transform.Translate(0, 0, -0.025f * Speed);
-        if (Input.GetKey("a") && !Input.GetKey("w") && !Input.GetKey("s"))
         {
-            Car.transform.Translate(0, 0, 0.025f * Speed);
-            Car.transform.Rotate(0, -0.5f * CameraSense, 0, Space.Self);
+            Car.transform.Translate(0, 0, 0.1f * holdtime);
+            if (holdtime > RSpeed)
+                holdtime -= 0.2f;
         }
 
-        if (Input.GetKey("d") && !Input.GetKey("w") && !Input.GetKey("s"))
+        if (!Input.GetKey("s") && !Input.GetKey("w"))
         {
-            Car.transform.Translate(0, 0, 0.025f * Speed);
-            Car.transform.Rotate(0, 0.5f * CameraSense, 0, Space.Self);
+            Car.transform.Translate(0, 0, 0.1f * holdtime);
+            if (holdtime > 0)
+                holdtime -= 0.05f;
+            if (holdtime < 0)
+                holdtime += 0.05f;
         }
 
-        if (Input.GetKey("d") && Input.GetKey("s"))
-            Car.transform.Rotate(0, -1 * CameraSense, 0, Space.Self);
-        if (Input.GetKey("a") && Input.GetKey("s"))
-            Car.transform.Rotate(0, 1 * CameraSense, 0, Space.Self);
-        if (Input.GetKey("d") && Input.GetKey("w"))
-            Car.transform.Rotate(0, 1 * CameraSense, 0, Space.Self);
-        if (Input.GetKey("a") && Input.GetKey("w"))
-            Car.transform.Rotate(0, -1 * CameraSense, 0, Space.Self);
-
-        if (Input.GetKeyUp("w"))
-        {
-            deceleration = holdtime;
-            holdtime = 0;
-        }
-
-        if (Input.GetKeyUp("w") && Input.GetKey("a"))
-        {
-            deceleration = holdtime;
-            holdtime = 0;
-        }
-
-        if (Input.GetKeyUp("w") && Input.GetKey("d"))
-        {
-            deceleration = holdtime;
-            holdtime = 0;
-        }
-
-        if (!Input.GetKeyUp("w"))
-        {
-            Car.transform.Translate(0, 0, 0.1f * deceleration);
-            if (deceleration < 0.1)
-                deceleration = 0;
-            if (deceleration > 0)
-                deceleration -= 0.05f;
-
-        }
-            
-
+        
     }
 }
