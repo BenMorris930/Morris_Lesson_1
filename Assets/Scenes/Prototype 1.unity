@@ -1848,21 +1848,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &841778402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842465945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622ca23bbd38b5c4c9754fd13150449e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Car: {fileID: 842465945}
-  Speed: 3
-  CameraSense: 2
 --- !u!4 &842211279
 Transform:
   m_ObjectHideFlags: 0
@@ -1874,7 +1859,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1031945007}
   - {fileID: 842234879}
   - {fileID: 842221223}
   - {fileID: 842246199}
@@ -1894,7 +1878,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842211279}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &842221223
 Transform:
@@ -1908,7 +1892,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842211279}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &842234879
 Transform:
@@ -1922,7 +1906,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842211279}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &842246199
 Transform:
@@ -1936,7 +1920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842211279}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842465945
 GameObject:
@@ -1951,7 +1935,6 @@ GameObject:
   - component: {fileID: 840321547}
   - component: {fileID: 3313442307163721199}
   - component: {fileID: 841778401}
-  - component: {fileID: 841778402}
   m_Layer: 0
   m_Name: Veh_Ute_Red_Z
   m_TagString: Untagged
@@ -2520,6 +2503,7 @@ GameObject:
   - component: {fileID: 1031945007}
   - component: {fileID: 1031945009}
   - component: {fileID: 1031945008}
+  - component: {fileID: 1031945010}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2538,8 +2522,8 @@ Transform:
   m_LocalPosition: {x: 0.11, y: 5.94, z: -7.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 842211279}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 18.848001, y: 0, z: 0}
 --- !u!81 &1031945008
 AudioListener:
@@ -2592,6 +2576,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1031945010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031945006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622ca23bbd38b5c4c9754fd13150449e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Car: {fileID: 842465945}
+  Speed: 5
+  CameraSense: 1
+  FollowDist: 10
 --- !u!1001 &1054624171
 PrefabInstance:
   m_ObjectHideFlags: 0
